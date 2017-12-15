@@ -40,13 +40,23 @@ var template = React.createElement(
 
 var user = {
   name: 'Petru',
-  age: 33,
+  age: 29,
   location: 'Iasi'
 };
-
 var userName = 'Mike';
 var userAge = 27;
 var userLocation = 'Chicago';
+
+function getLocation(location) {
+  if (location) {
+    return React.createElement(
+      'p',
+      null,
+      'Location: ',
+      location
+    );
+  }
+}
 
 var templateTwo = React.createElement(
   'div',
@@ -54,22 +64,17 @@ var templateTwo = React.createElement(
   React.createElement(
     'h1',
     null,
-    user.name
+    user.name ? user.name : 'Anonymous'
   ),
-  React.createElement(
+  user.age && user.age >= 18 && React.createElement(
     'p',
     null,
     'Age: ',
-    userAge
+    user.age
   ),
-  React.createElement(
-    'p',
-    null,
-    'Location: ',
-    userLocation
-  )
+  getLocation(user.location)
 );
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);

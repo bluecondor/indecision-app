@@ -20,22 +20,27 @@ var template = (
 
 var user = {
   name: 'Petru',
-  age: 33,
+  age: 29,
   location: 'Iasi'
-}
-
+}  
 var userName = 'Mike';
 var userAge = 27;
 var userLocation = 'Chicago';
 
+function getLocation(location) {
+  if (location) {
+    return <p>Location: {location}</p>;
+  }
+}
+
 var templateTwo = (
   <div>
-    <h1>{user.name}</h1>
-    <p>Age: {userAge}</p>
-    <p>Location: {userLocation}</p>
+    <h1>{user.name ? user.name : 'Anonymous'}</h1>
+    {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
+    {getLocation(user.location)}
   </div>
 );
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
