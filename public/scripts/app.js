@@ -1,80 +1,37 @@
 'use strict';
 
-console.log('App.js is running');
+// arguments object - no longer bound with arrow functions
 
-// JSX - JavaScript XML
-
-var app = {
-  title: 'Firs React App',
-  subtitle: 'with Andrew Mead'
+var add = function add(a, b) {
+  // console.log(arguments);
+  return a + b;
 };
+console.log(add(20, 5));
 
-var template = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    app.title
-  ),
-  React.createElement(
-    'p',
-    null,
-    app.subtitle
-  ),
-  React.createElement(
-    'ol',
-    null,
-    React.createElement(
-      'li',
-      null,
-      'Item one'
-    ),
-    React.createElement(
-      'li',
-      null,
-      'Item two'
-    )
-  )
-);
+// this keyword - no longer bound
 
 var user = {
-  name: 'Petru',
-  age: 29,
-  location: 'Iasi'
-};
-var userName = 'Mike';
-var userAge = 27;
-var userLocation = 'Chicago';
+  name: 'Andrew',
+  cities: ['Iasi', 'Oslo', 'Torino'],
+  printPlacesLived: function printPlacesLived() {
+    var _this = this;
 
-function getLocation(location) {
-  if (location) {
-    return React.createElement(
-      'p',
-      null,
-      'Location: ',
-      location
-    );
+    return this.cities.map(function (city) {
+      return _this.name + ' has lived in ' + city;
+    });
   }
-}
+};
+console.log(user.printPlacesLived());
 
-var templateTwo = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    user.name ? user.name : 'Anonymous'
-  ),
-  user.age && user.age >= 18 && React.createElement(
-    'p',
-    null,
-    'Age: ',
-    user.age
-  ),
-  getLocation(user.location)
-);
+var multiplier = {
+  numbers: [2, 4, 6, 8],
+  multiplyBy: 3,
+  multiply: function multiply() {
+    var _this2 = this;
 
-var appRoot = document.getElementById('app');
-
-ReactDOM.render(templateTwo, appRoot);
+    return this.numbers.map(function (number) {
+      return _this2.multiplyBy * number;
+    });
+  }
+};
+console.log(multiplier.multiply());

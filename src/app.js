@@ -2,15 +2,17 @@ console.log('App.js is running');
 
 // JSX - JavaScript XML
 
-var app = {
-  title: 'Firs React App',
-  subtitle: 'with Andrew Mead'
+const app = {
+  title: 'Indecision App',
+  subtitle: 'with Andrew Mead',
+  options: ['One', 'Two']
 }
 
-var template = (
+const template = (
   <div>
     <h1>{app.title}</h1>
-    <p>{app.subtitle}</p>
+    {app.subtitle && <p>{app.subtitle}</p>}
+    {app.options.length > 0 ? "Here are your options" : "No options"}
     <ol>
       <li>Item one</li>
       <li>Item two</li>
@@ -18,14 +20,15 @@ var template = (
   </div>
 );
 
-var user = {
+const user = {
   name: 'Petru',
   age: 29,
   location: 'Iasi'
 }  
-var userName = 'Mike';
-var userAge = 27;
-var userLocation = 'Chicago';
+
+const userName = 'Mike';
+const userAge = 27;
+const userLocation = 'Chicago';
 
 function getLocation(location) {
   if (location) {
@@ -33,7 +36,7 @@ function getLocation(location) {
   }
 }
 
-var templateTwo = (
+const templateTwo = (
   <div>
     <h1>{user.name ? user.name : 'Anonymous'}</h1>
     {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
@@ -41,6 +44,6 @@ var templateTwo = (
   </div>
 );
 
-var appRoot = document.getElementById('app');
+const appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);
