@@ -1,3 +1,15 @@
+const obj = {
+  name: 'Vikram',
+  getName() {
+    return this.name;
+  }
+};
+
+const getName = obj.getName.bind( {name: 'Petru'} );
+console.log(getName());
+
+console.log(obj.getName());
+
 class IndecisionApp extends React.Component {
   render() {
     const title = 'Indecision';
@@ -41,13 +53,18 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleRemoveAll = this.handleRemoveAll.bind(this);
+  }
   handleRemoveAll() {
-    alert('some message');
+    console.log(this.props.otpions);
+    //alert('some message');
   }
   render() {
     return (
       <div>
-        <button onClick={this.handleRemoveAll}>Remove All</button>
+        <button onClick={this.handleRemoveAll.bind(this)}>Remove All</button>
         {
           this.props.options.map((option) => <Option key={option} optionText={option} />)
         }
